@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import CourseModal from "@/components/organisms/CourseModal";
+import { courseService } from "@/services/api/courseService";
+import ApperIcon from "@/components/ApperIcon";
 import CourseCard from "@/components/molecules/CourseCard";
 import SearchBar from "@/components/molecules/SearchBar";
-import Button from "@/components/atoms/Button";
-import Select from "@/components/atoms/Select";
-import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import { courseService } from "@/services/api/courseService";
-
+import Loading from "@/components/ui/Loading";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [semesterFilter, setSemesterFilter] = useState("all");
-
+  const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
   const loadCourses = async () => {
     setLoading(true);
     setError("");
@@ -81,11 +81,8 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
             <div className="flex-1">
               {/* Filters */}
             </div>
-            <Button
-              onClick={() => {
-                // Handle create course - could open modal or navigate to form
-                console.log("Create course clicked");
-              }}
+<Button
+              onClick={() => setIsCourseModalOpen(true)}
               className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
             >
               <ApperIcon name="Plus" size={18} className="mr-2" />
@@ -178,9 +175,15 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
             </div>
           </motion.div>
         )}
+</div>
+        )}
       </div>
+
+      {/* Course Creation Modal */}
+      <CourseModal
+        isOpen={isCourseModalOpen}
+        onClose={() => setIsCourseModalOpen(false)}
+        onCourseCreated={loadCourses}
+      />
     </div>
   );
-};
-
-export default Courses;
