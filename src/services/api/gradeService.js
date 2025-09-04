@@ -276,4 +276,3 @@ class GradeService {
 }
 
 export const gradeService = new GradeService();
-export const gradeService = new GradeService();

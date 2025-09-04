@@ -266,5 +266,3 @@ class AssignmentService {
 }
 
 export const assignmentService = new AssignmentService();
-
-export const assignmentService = new AssignmentService();
