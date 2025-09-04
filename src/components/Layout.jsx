@@ -10,13 +10,14 @@ const Layout = ({ children }) => {
   const [isQuickAddOpen, setIsQuickAddOpen] = useState(false);
   const navigate = useNavigate();
 
-  const navigationItems = [
-    { path: "/", label: "Dashboard", icon: "Home" },
-    { path: "/courses", label: "Courses", icon: "BookOpen" },
-    { path: "/assignments", label: "Assignments", icon: "CheckSquare" },
-    { path: "/calendar", label: "Calendar", icon: "Calendar" },
-    { path: "/grades", label: "Grades", icon: "BarChart3" },
-  ];
+const navigationItems = [
+{ path: "/", label: "Dashboard", icon: "Home" },
+{ path: "/courses", label: "Courses", icon: "BookOpen" },
+{ path: "/assignments", label: "Assignments", icon: "CheckSquare" },
+{ path: "/calendar", label: "Calendar", icon: "Calendar" },
+{ path: "/study-timer", label: "Study Timer", icon: "Timer" },
+{ path: "/grades", label: "Grades", icon: "BarChart3" },
+];
 
   const DesktopSidebar = () => (
     <div className="fixed left-0 top-0 h-full w-64 bg-white shadow-xl border-r border-gray-200 z-40">

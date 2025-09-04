@@ -7,6 +7,7 @@ import Courses from "@/components/pages/Courses";
 import Assignments from "@/components/pages/Assignments";
 import Calendar from "@/components/pages/Calendar";
 import Grades from "@/components/pages/Grades";
+import StudyTimer from "@/components/pages/StudyTimer";
 
 const App = () => {
   return (
@@ -14,11 +15,12 @@ const App = () => {
       <div className="min-h-screen bg-gray-50">
         <Layout>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/assignments" element={<Assignments />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/grades" element={<Grades />} />
+<Route path="/" element={<Dashboard />} />
+<Route path="/courses" element={<Courses />} />
+<Route path="/assignments" element={<Assignments />} />
+<Route path="/calendar" element={<Calendar />} />
+<Route path="/grades" element={<Grades />} />
+<Route path="/study-timer" element={<StudyTimer />} />
           </Routes>
         </Layout>
         
