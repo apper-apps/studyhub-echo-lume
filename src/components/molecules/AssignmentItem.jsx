@@ -43,9 +43,9 @@ const getDueDateColor = () => {
     <CardContent className="p-4">
         <div className="flex items-start space-x-3">
             <div className="flex-shrink-0 mt-1">
-                <input
+<input
                     type="checkbox"
-                    checked={assignment.completed_c === "true" || assignment.completed}
+                    checked={Boolean(assignment.completed_c === "true" || assignment.completed)}
                     onChange={() => onToggle(assignment.Id)}
                     className="w-5 h-5 rounded border-2 border-gray-300 text-primary-500 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer" />
             </div>
