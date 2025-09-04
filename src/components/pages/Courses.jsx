@@ -36,17 +36,17 @@ const Courses = () => {
     loadCourses();
   }, []);
 
-  const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
+const filteredCourses = courses.filter(course => {
+    const matchesSearch = (course.Name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (course.code_c || course.code || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (course.instructor_c || course.instructor || '').toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesSemester = semesterFilter === "all" || course.semester === semesterFilter;
+    const matchesSemester = semesterFilter === "all" || (course.semester_c || course.semester) === semesterFilter;
     
     return matchesSearch && matchesSemester;
   });
 
-  const uniqueSemesters = [...new Set(courses.map(course => course.semester))];
+const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || course.semester).filter(Boolean))];
 
   const handleCourseClick = (course) => {
     // Handle course click - could navigate to course detail page
