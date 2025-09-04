@@ -76,8 +76,24 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
               <p className="text-gray-600">Manage and track all your enrolled courses.</p>
             </div>
           </div>
-
-          {/* Filters */}
+{/* Header Actions */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex-1">
+              {/* Filters */}
+            </div>
+            <Button
+              onClick={() => {
+                // Handle create course - could open modal or navigate to form
+                console.log("Create course clicked");
+              }}
+              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+            >
+              <ApperIcon name="Plus" size={18} className="mr-2" />
+              Create Course
+            </Button>
+          </div>
+          
+          {/* Filters Section */}
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <SearchBar
               placeholder="Search courses, codes, or instructors..."
