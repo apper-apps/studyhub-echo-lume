@@ -10,6 +10,7 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
 import ApperIcon from "@/components/ApperIcon";
+import QuickAddModal from "@/components/organisms/QuickAddModal";
 import { assignmentService } from "@/services/api/assignmentService";
 import { courseService } from "@/services/api/courseService";
 
@@ -22,7 +23,7 @@ const Assignments = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [courseFilter, setCourseFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
-
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const loadData = async () => {
     setLoading(true);
     setError("");
@@ -44,8 +45,13 @@ const Assignments = () => {
   };
 
   useEffect(() => {
-    loadData();
+loadData();
   }, []);
+
+  const handleModalClose = () => {
+    setShowCreateModal(false);
+    loadData(); // Refresh assignments after modal closes
+  };
 
   const handleToggleComplete = async (assignmentId) => {
     try {
@@ -147,7 +153,14 @@ const total = assignments.length;
                 Assignments
               </h1>
               <p className="text-gray-600">Track and manage all your assignments and deadlines.</p>
-            </div>
+</div>
+            <Button
+              onClick={() => setShowCreateModal(true)}
+              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <ApperIcon name="Plus" size={18} className="mr-2" />
+              Create Assignment
+            </Button>
           </div>
 
           {/* Stats */}
@@ -252,7 +265,12 @@ const total = assignments.length;
             </div>
           )}
         </motion.div>
-      </div>
+</div>
+
+      <QuickAddModal
+        isOpen={showCreateModal}
+        onClose={handleModalClose}
+      />
     </div>
   );
 };
