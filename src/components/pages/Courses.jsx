@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import CourseModal from "@/components/organisms/CourseModal";
 import { courseService } from "@/services/api/courseService";
 import ApperIcon from "@/components/ApperIcon";
+import CourseModal from "@/components/organisms/CourseModal";
 import CourseCard from "@/components/molecules/CourseCard";
 import SearchBar from "@/components/molecules/SearchBar";
 import Error from "@/components/ui/Error";
@@ -173,12 +173,10 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
                 <p className="text-sm text-gray-600">Semesters</p>
               </div>
             </div>
+</div>
           </motion.div>
         )}
-</div>
-        )}
       </div>
-
       {/* Course Creation Modal */}
       <CourseModal
         isOpen={isCourseModalOpen}
