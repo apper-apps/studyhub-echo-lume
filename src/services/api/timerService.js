@@ -1,3 +1,4 @@
+// Timer service for study sessions and breaks - keeping original functionality for StudyTimer page
 class TimerService {
   constructor() {
     this.defaultSettings = {

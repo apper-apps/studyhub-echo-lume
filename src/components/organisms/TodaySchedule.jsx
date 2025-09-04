@@ -10,13 +10,14 @@ const TodaySchedule = ({ schedule, assignments }) => {
 
   // Filter today's classes
   const todayClasses = schedule.filter(item => 
-    item.dayOfWeek?.toLowerCase() === dayName
+(item.day_of_week_c || item.dayOfWeek)?.toLowerCase() === dayName
   );
 
   // Filter today's due assignments
-  const todayAssignments = assignments.filter(assignment => {
-    const dueDate = new Date(assignment.dueDate);
-    return dueDate.toDateString() === today.toDateString() && !assignment.completed;
+const todayAssignments = assignments.filter(assignment => {
+    const dueDate = new Date(assignment.due_date_c || assignment.dueDate);
+    return dueDate.toDateString() === today.toDateString() && 
+           !(assignment.completed_c === "true" || assignment.completed);
   });
 
   // Combine and sort by time
@@ -24,8 +25,8 @@ const TodaySchedule = ({ schedule, assignments }) => {
     ...todayClasses.map(cls => ({
       ...cls,
       type: "class",
-      time: cls.startTime,
-      title: cls.courseName || cls.title
+time: cls.start_time_c || cls.startTime,
+      title: cls.course_name_c || cls.courseName || cls.title
     })),
     ...todayAssignments.map(assignment => ({
       ...assignment,
@@ -71,8 +72,8 @@ const TodaySchedule = ({ schedule, assignments }) => {
             key={`${item.type}-${item.Id || index}`} 
             className="flex items-center space-x-4 p-3 rounded-lg bg-gradient-to-r from-gray-50 to-white border border-gray-100 hover:shadow-md transition-all duration-200"
           >
-            <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-lg shadow-md"
-                 style={{ backgroundColor: item.color || "#6B7280" }}>
+<div className="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-lg shadow-md"
+                 style={{ backgroundColor: item.color_c || item.color || "#6B7280" }}>
               <ApperIcon 
                 name={item.type === "class" ? "BookOpen" : "CheckSquare"} 
                 size={20} 
@@ -80,23 +81,23 @@ const TodaySchedule = ({ schedule, assignments }) => {
               />
             </div>
             
-            <div className="flex-1 min-w-0">
-              <h4 className="font-semibold text-gray-900 truncate">{item.title}</h4>
-              <div className="flex items-center space-x-3 mt-1">
-                <div className="flex items-center space-x-1 text-sm text-gray-600">
-                  <ApperIcon name="Clock" size={14} />
-                  <span>
-                    {item.type === "class" 
-                      ? `${item.startTime} - ${item.endTime}` 
-                      : "Due today"
-                    }
+<div className="min-w-0 flex-1">
+                <h4 className="font-semibold text-gray-900 truncate">{item.title_c || item.title}</h4>
+                <div className="flex items-center space-x-4 mt-1">
+                  <div className="flex items-center space-x-1 text-sm text-gray-600">
+                    <ApperIcon name="Clock" size={14} />
+                    <span>
+                      {item.type === "class" 
+                        ? `${item.start_time_c || item.startTime} - ${item.end_time_c || item.endTime}` 
+                        : "Due today"
+                      }
                   </span>
                 </div>
                 
-                {item.room && (
+{(item.room_c || item.room) && (
                   <div className="flex items-center space-x-1 text-sm text-gray-600">
                     <ApperIcon name="MapPin" size={14} />
-                    <span>{item.room}</span>
+                    <span>{item.room_c || item.room}</span>
                   </div>
                 )}
               </div>

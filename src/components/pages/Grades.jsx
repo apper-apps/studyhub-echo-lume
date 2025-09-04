@@ -46,20 +46,22 @@ const Grades = () => {
     loadData();
   }, []);
 
-  const calculateCourseGrade = (courseId) => {
-    const courseGrades = grades.filter(g => g.courseId === courseId);
+const calculateCourseGrade = (courseId) => {
+    const courseGrades = grades.filter(g => (g.course_id_c || g.courseId) === courseId);
     if (courseGrades.length === 0) return null;
 
     let totalWeightedScore = 0;
     let totalWeight = 0;
 
     courseGrades.forEach(grade => {
-      const avgScore = grade.scores?.length > 0 
-        ? grade.scores.reduce((sum, score) => sum + score, 0) / grade.scores.length 
-        : grade.average || 85;
+      const scores = grade.scores_c || grade.scores;
+      const avgScore = Array.isArray(scores) && scores.length > 0 
+        ? scores.reduce((sum, score) => sum + score, 0) / scores.length 
+        : (grade.average_c || grade.average || 85);
       
-      totalWeightedScore += avgScore * (grade.weight / 100);
-      totalWeight += grade.weight / 100;
+      const weight = grade.weight_c || grade.weight || 0;
+      totalWeightedScore += avgScore * (weight / 100);
+      totalWeight += weight / 100;
     });
 
     return totalWeight > 0 ? totalWeightedScore / totalWeight : null;
@@ -100,11 +102,12 @@ const Grades = () => {
     let totalCredits = 0;
 
     courses.forEach(course => {
-      const courseGrade = calculateCourseGrade(course.Id);
+const courseGrade = calculateCourseGrade(course.Id);
       if (courseGrade !== null) {
         const gpaPoints = calculateGPA(courseGrade);
-        totalGradePoints += gpaPoints * course.credits;
-        totalCredits += course.credits;
+        const credits = course.credits_c || course.credits || 0;
+        totalGradePoints += gpaPoints * credits;
+        totalCredits += credits;
       }
     });
 
@@ -153,16 +156,20 @@ const Grades = () => {
   };
 
   const getProgressChart = (courseId) => {
-    const courseAssignments = assignments
-      .filter(a => a.courseId === courseId && a.grade !== null)
-      .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+const courseAssignments = assignments
+      .filter(a => {
+        const assignmentCourseId = a.course_id_c || a.courseId;
+        const assignmentGrade = a.grade_c || a.grade;
+        return assignmentCourseId === courseId && assignmentGrade !== null;
+      })
+      .sort((a, b) => new Date(a.due_date_c || a.dueDate) - new Date(b.due_date_c || b.dueDate));
 
     if (courseAssignments.length === 0) return null;
 
     return {
       series: [{
         name: "Grade",
-        data: courseAssignments.map(a => a.grade)
+        data: courseAssignments.map(a => a.grade_c || a.grade)
       }],
       options: {
         chart: { type: "line", height: 200, sparkline: { enabled: true } },
@@ -239,8 +246,8 @@ const Grades = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <ApperIcon name="TrendingUp" size={32} className="text-purple-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-purple-600 mb-1">
-                  {courses.reduce((sum, course) => sum + course.credits, 0)}
+<h3 className="text-3xl font-bold text-purple-600 mb-1">
+                  {courses.reduce((sum, course) => sum + (course.credits_c || course.credits || 0), 0)}
                 </h3>
                 <p className="text-sm text-gray-600">Total Credits</p>
                 <p className="text-xs text-gray-500 mt-1">This semester</p>
@@ -257,8 +264,8 @@ const Grades = () => {
             >
               <option value="all">All Courses</option>
               {courses.map(course => (
-                <option key={course.Id} value={course.Id.toString()}>
-                  {course.name} ({course.code})
+<option key={course.Id} value={course.Id.toString()}>
+                  {course.Name || course.name} ({course.code_c || course.code})
                 </option>
               ))}
             </Select>
@@ -282,9 +289,9 @@ const Grades = () => {
               />
             ) : (
               filteredCourses.map((course) => {
-                const courseGrade = calculateCourseGrade(course.Id);
+const courseGrade = calculateCourseGrade(course.Id);
                 const progressChart = getProgressChart(course.Id);
-                const courseGrades = grades.filter(g => g.courseId === course.Id);
+                const courseGrades = grades.filter(g => (g.course_id_c || g.courseId) === course.Id);
                 
                 return (
                   <Card key={course.Id} className="transform hover:shadow-xl transition-all duration-200">
@@ -293,13 +300,13 @@ const Grades = () => {
                         <div className="flex items-center space-x-3">
                           <div 
                             className="w-10 h-10 rounded-lg flex items-center justify-center shadow-md"
-                            style={{ backgroundColor: course.color }}
+                            style={{ backgroundColor: course.color_c || course.color }}
                           >
                             <ApperIcon name="BookOpen" size={20} className="text-white" />
                           </div>
                           <div>
-                            <CardTitle className="text-lg">{course.name}</CardTitle>
-                            <p className="text-sm text-gray-600">{course.code} • {course.credits} credits</p>
+                            <CardTitle className="text-lg">{course.Name || course.name}</CardTitle>
+                            <p className="text-sm text-gray-600">{course.code_c || course.code} • {course.credits_c || course.credits} credits</p>
                           </div>
                         </div>
                         
@@ -323,16 +330,16 @@ const Grades = () => {
                           {courseGrades.map((grade) => (
                             <div key={grade.Id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                               <div>
-                                <h4 className="font-medium text-gray-900">{grade.category}</h4>
-                                <p className="text-sm text-gray-600">{grade.weight}% of final grade</p>
+                                <h4 className="font-medium text-gray-900">{grade.category_c || grade.category}</h4>
+                                <p className="text-sm text-gray-600">{grade.weight_c || grade.weight}% of final grade</p>
                               </div>
                               <div className="text-right">
                                 <div className="text-lg font-semibold text-gray-900">
-                                  {grade.average || 85}%
+                                  {grade.average_c || grade.average || 85}%
                                 </div>
-                                {grade.scores && grade.scores.length > 0 && (
+                                {((grade.scores_c || grade.scores) && Array.isArray(grade.scores_c || grade.scores) && (grade.scores_c || grade.scores).length > 0) && (
                                   <p className="text-xs text-gray-500">
-                                    {grade.scores.length} assignment{grade.scores.length !== 1 ? 's' : ''}
+                                    {(grade.scores_c || grade.scores).length} assignment{(grade.scores_c || grade.scores).length !== 1 ? 's' : ''}
                                   </p>
                                 )}
                               </div>

@@ -38,30 +38,36 @@ const Dashboard = () => {
       const today = new Date();
       const oneWeekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-      const pendingAssignments = assignmentsData.filter(a => !a.completed).length;
+const pendingAssignments = assignmentsData.filter(a => {
+        return !(a.completed_c === "true" || a.completed);
+      }).length;
       const dueThisWeek = assignmentsData.filter(a => {
-        const dueDate = new Date(a.dueDate);
-        return !a.completed && dueDate >= today && dueDate <= oneWeekFromNow;
+        const dueDate = new Date(a.due_date_c || a.dueDate);
+        const completed = a.completed_c === "true" || a.completed;
+        return !completed && dueDate >= today && dueDate <= oneWeekFromNow;
       }).length;
 
       // Calculate GPA
       let totalGradePoints = 0;
       let totalCredits = 0;
       
-      coursesData.forEach(course => {
-        const courseGrades = gradesData.filter(g => g.courseId === course.Id);
+coursesData.forEach(course => {
+        const courseGrades = gradesData.filter(g => (g.course_id_c || g.courseId) === course.Id);
         if (courseGrades.length > 0) {
           const avgScore = courseGrades.reduce((sum, grade) => {
-            const gradeAvg = grade.scores?.length > 0 
-              ? grade.scores.reduce((s, score) => s + score, 0) / grade.scores.length 
-              : grade.average || 85;
-            return sum + (gradeAvg * (grade.weight / 100));
+            const scores = grade.scores_c || grade.scores;
+            const gradeAvg = Array.isArray(scores) && scores.length > 0 
+              ? scores.reduce((s, score) => s + score, 0) / scores.length 
+              : (grade.average_c || grade.average || 85);
+            const weight = grade.weight_c || grade.weight || 0;
+            return sum + (gradeAvg * (weight / 100));
           }, 0);
           
           // Convert percentage to GPA (4.0 scale)
           const gpaPoints = Math.max(0, Math.min(4.0, (avgScore - 50) * 4 / 50));
-          totalGradePoints += gpaPoints * course.credits;
-          totalCredits += course.credits;
+          const credits = course.credits_c || course.credits || 0;
+          totalGradePoints += gpaPoints * credits;
+          totalCredits += credits;
         }
       });
 

@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "react-toastify";
-import Button from "@/components/atoms/Button";
-import FormField from "@/components/molecules/FormField";
-import ApperIcon from "@/components/ApperIcon";
 import { assignmentService } from "@/services/api/assignmentService";
 import { courseService } from "@/services/api/courseService";
+import ApperIcon from "@/components/ApperIcon";
+import FormField from "@/components/molecules/FormField";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
 
 const QuickAddModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
-    courseId: "",
-    dueDate: "",
-    priority: "medium"
+course_id_c: "",
+    due_date_c: "",
+    priority_c: "medium"
   });
   const [courses, setCourses] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,12 +41,12 @@ const QuickAddModal = ({ isOpen, onClose }) => {
       return;
     }
     
-    if (!formData.courseId) {
+if (!formData.course_id_c) {
       toast.error("Please select a course");
       return;
     }
     
-    if (!formData.dueDate) {
+    if (!formData.due_date_c) {
       toast.error("Please set a due date");
       return;
     }
@@ -54,26 +55,26 @@ const QuickAddModal = ({ isOpen, onClose }) => {
 
     try {
       const newAssignment = {
-        title: formData.title.trim(),
-        courseId: parseInt(formData.courseId),
-        dueDate: formData.dueDate,
-        priority: formData.priority,
-        description: "",
-        completed: false,
-        grade: null,
-        category: "assignment"
+title_c: formData.title_c || formData.title?.trim(),
+        course_id_c: parseInt(formData.course_id_c || formData.courseId),
+        due_date_c: formData.due_date_c || formData.dueDate,
+        priority_c: formData.priority_c || formData.priority,
+        description_c: "",
+        completed_c: "false",
+        grade_c: null,
+        category_c: "assignment"
       };
-
+      
       await assignmentService.create(newAssignment);
       
       toast.success("Assignment added successfully!");
       
       // Reset form
-      setFormData({
+setFormData({
         title: "",
-        courseId: "",
-        dueDate: "",
-        priority: "medium"
+        course_id_c: "",
+        due_date_c: "",
+        priority_c: "medium"
       });
       
       onClose();
@@ -91,7 +92,7 @@ const QuickAddModal = ({ isOpen, onClose }) => {
     }));
   };
 
-  return (
+return (
     <AnimatePresence>
       {isOpen && (
         <>
@@ -103,11 +104,11 @@ const QuickAddModal = ({ isOpen, onClose }) => {
             onClick={onClose}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-xl shadow-2xl w-full max-w-md border border-gray-200"
-              onClick={e => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white rounded-xl shadow-2xl w-full max-w-lg mx-4"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div className="flex items-center space-x-3">
@@ -115,13 +116,16 @@ const QuickAddModal = ({ isOpen, onClose }) => {
                     <ApperIcon name="Plus" size={20} className="text-white" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-display font-semibold text-gray-900">
-                      Quick Add Assignment
-                    </h2>
-                    <p className="text-sm text-gray-600">Add a new assignment quickly</p>
+                    <h2 className="text-xl font-semibold text-gray-900">Quick Add Assignment</h2>
+                    <p className="text-sm text-gray-500">Add a new assignment quickly</p>
                   </div>
                 </div>
-                <Button variant="ghost" size="sm" onClick={onClose}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onClose}
+                  className="text-gray-400 hover:text-gray-600"
+                >
                   <ApperIcon name="X" size={20} />
                 </Button>
               </div>
@@ -129,33 +133,33 @@ const QuickAddModal = ({ isOpen, onClose }) => {
               <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 <FormField
                   label="Assignment Title"
-                  type="input"
-                  placeholder="Enter assignment title..."
+                  type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange("title", e.target.value)}
+                  placeholder="Enter assignment title"
                   required
                 />
 
                 <FormField
                   label="Course"
                   type="select"
-                  value={formData.courseId}
-                  onChange={(e) => handleInputChange("courseId", e.target.value)}
+                  value={formData.course_id_c}
+                  onChange={(e) => handleInputChange("course_id_c", e.target.value)}
                   required
                 >
                   <option value="">Select a course</option>
                   {courses.map((course) => (
                     <option key={course.Id} value={course.Id}>
-                      {course.name} ({course.code})
+                      {course.Name || course.name} ({course.code_c || course.code})
                     </option>
                   ))}
                 </FormField>
 
                 <FormField
                   label="Due Date"
-                  type="date"
-                  value={formData.dueDate}
-                  onChange={(e) => handleInputChange("dueDate", e.target.value)}
+                  type="datetime-local"
+                  value={formData.due_date_c}
+                  onChange={(e) => handleInputChange("due_date_c", e.target.value)}
                   min={new Date().toISOString().split("T")[0]}
                   required
                 />
@@ -163,8 +167,8 @@ const QuickAddModal = ({ isOpen, onClose }) => {
                 <FormField
                   label="Priority"
                   type="select"
-                  value={formData.priority}
-                  onChange={(e) => handleInputChange("priority", e.target.value)}
+                  value={formData.priority_c}
+                  onChange={(e) => handleInputChange("priority_c", e.target.value)}
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>

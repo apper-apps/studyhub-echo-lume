@@ -52,41 +52,41 @@ const Calendar = () => {
   const calendarDays = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
   const getEventsForDate = (date) => {
-    const events = [];
+const events = [];
     
     // Add assignments due on this date
     const dueTasks = assignments.filter(assignment => 
-      isSameDay(new Date(assignment.dueDate), date)
+      isSameDay(new Date(assignment.due_date_c || assignment.dueDate), date)
     );
     
     dueTasks.forEach(task => {
-      const course = courses.find(c => c.Id === task.courseId);
+      const course = courses.find(c => c.Id === (task.course_id_c || task.courseId));
       events.push({
         id: `assignment-${task.Id}`,
         type: "assignment",
-        title: task.title,
-        color: course?.color || "#6B7280",
-        course: course?.code || "Unknown",
-        completed: task.completed,
-        priority: task.priority
+        title: task.title_c || task.title,
+        color: course?.color_c || course?.color || "#6B7280",
+        course: course?.code_c || course?.code || "Unknown",
+        completed: task.completed_c === "true" || task.completed,
+        priority: task.priority_c || task.priority
       });
     });
 
     // Add scheduled classes for this day
     const dayName = format(date, "EEEE").toLowerCase();
     const classesToday = schedule.filter(item => 
-      item.dayOfWeek?.toLowerCase() === dayName
+      (item.day_of_week_c || item.dayOfWeek)?.toLowerCase() === dayName
     );
     
     classesToday.forEach(classItem => {
-      const course = courses.find(c => c.Id === classItem.courseId);
+      const course = courses.find(c => c.Id === (classItem.course_id_c || classItem.courseId));
       events.push({
         id: `class-${classItem.Id}`,
         type: "class",
-        title: course?.name || classItem.courseName || "Class",
-        color: course?.color || "#6B7280",
-        time: `${classItem.startTime} - ${classItem.endTime}`,
-        room: classItem.room
+        title: course?.Name || course?.name || classItem.course_name_c || classItem.courseName || "Class",
+        color: course?.color_c || course?.color || classItem.color_c || classItem.color || "#6B7280",
+        time: `${classItem.start_time_c || classItem.startTime} - ${classItem.end_time_c || classItem.endTime}`,
+        room: classItem.room_c || classItem.room
       });
     });
 
@@ -314,7 +314,7 @@ const Calendar = () => {
                                 </p>
                               )}
                               
-                              {event.room && (
+{event.room && (
                                 <p className="text-sm text-gray-600 mt-1 flex items-center">
                                   <ApperIcon name="MapPin" size={14} className="mr-1" />
                                   {event.room}

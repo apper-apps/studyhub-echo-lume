@@ -49,8 +49,13 @@ const Assignments = () => {
 
   const handleToggleComplete = async (assignmentId) => {
     try {
-      const assignment = assignments.find(a => a.Id === assignmentId);
-      const updatedAssignment = { ...assignment, completed: !assignment.completed };
+const assignment = assignments.find(a => a.Id === assignmentId);
+      const currentCompleted = assignment.completed_c === "true" || assignment.completed;
+      const updatedAssignment = { 
+        ...assignment, 
+        completed_c: (!currentCompleted).toString(),
+        completed: !currentCompleted 
+      };
       
       await assignmentService.update(assignmentId, updatedAssignment);
       
@@ -72,41 +77,48 @@ const Assignments = () => {
     return courses.find(course => course.Id === courseId);
   };
 
-  const filteredAssignments = assignments.filter(assignment => {
-    const matchesSearch = assignment.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         assignment.description?.toLowerCase().includes(searchTerm.toLowerCase());
+const filteredAssignments = assignments.filter(assignment => {
+    const title = assignment.title_c || assignment.title || "";
+    const description = assignment.description_c || assignment.description || "";
+    const matchesSearch = title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         description.toLowerCase().includes(searchTerm.toLowerCase());
     
+    const completed = assignment.completed_c === "true" || assignment.completed;
     const matchesStatus = statusFilter === "all" || 
-                         (statusFilter === "completed" && assignment.completed) ||
-                         (statusFilter === "pending" && !assignment.completed);
+                         (statusFilter === "completed" && completed) ||
+                         (statusFilter === "pending" && !completed);
     
-    const matchesCourse = courseFilter === "all" || assignment.courseId.toString() === courseFilter;
+    const courseId = assignment.course_id_c || assignment.courseId;
+    const matchesCourse = courseFilter === "all" || courseId?.toString() === courseFilter;
     
-    const matchesPriority = priorityFilter === "all" || assignment.priority === priorityFilter;
-    
+    const priority = assignment.priority_c || assignment.priority;
+    const matchesPriority = priorityFilter === "all" || priority === priorityFilter;
     return matchesSearch && matchesStatus && matchesCourse && matchesPriority;
   });
 
   // Sort by due date (upcoming first) and then by priority
-  const sortedAssignments = [...filteredAssignments].sort((a, b) => {
+const sortedAssignments = [...filteredAssignments].sort((a, b) => {
     // Completed items go to bottom
-    if (a.completed && !b.completed) return 1;
-    if (!a.completed && b.completed) return -1;
+    const aCompleted = a.completed_c === "true" || a.completed;
+    const bCompleted = b.completed_c === "true" || b.completed;
+    if (aCompleted && !bCompleted) return 1;
+    if (!aCompleted && bCompleted) return -1;
     
     // Then sort by due date
-    const dateA = new Date(a.dueDate);
-    const dateB = new Date(b.dueDate);
+    const dateA = new Date(a.due_date_c || a.dueDate);
+    const dateB = new Date(b.due_date_c || b.dueDate);
     
     return dateA - dateB;
   });
 
   const getStats = () => {
-    const total = assignments.length;
-    const completed = assignments.filter(a => a.completed).length;
+const total = assignments.length;
+    const completed = assignments.filter(a => a.completed_c === "true" || a.completed).length;
     const pending = total - completed;
     const overdue = assignments.filter(a => {
-      const dueDate = new Date(a.dueDate);
-      return !a.completed && dueDate < new Date();
+      const dueDate = new Date(a.due_date_c || a.dueDate);
+      const isCompleted = a.completed_c === "true" || a.completed;
+      return !isCompleted && dueDate < new Date();
     }).length;
 
     return { total, completed, pending, overdue };
@@ -184,8 +196,8 @@ const Assignments = () => {
               >
                 <option value="all">All Courses</option>
                 {courses.map(course => (
-                  <option key={course.Id} value={course.Id.toString()}>
-                    {course.code}
+<option key={course.Id} value={course.Id.toString()}>
+                    {course.code_c || course.code}
                   </option>
                 ))}
               </Select>
@@ -230,9 +242,9 @@ const Assignments = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 + index * 0.02 }}
                 >
-                  <AssignmentItem
+<AssignmentItem
                     assignment={assignment}
-                    course={getCourse(assignment.courseId)}
+                    course={getCourse(assignment.course_id_c || assignment.courseId)}
                     onToggle={handleToggleComplete}
                   />
                 </motion.div>
