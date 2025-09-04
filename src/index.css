@@ -1,0 +1,110 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Toast Customization */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  @apply rounded-lg shadow-lg border border-gray-200 font-body;
+  min-height: 50px;
+}
+
+.Toastify__toast--success {
+  @apply bg-white border-success-500 text-gray-900;
+}
+
+.Toastify__toast--error {
+  @apply bg-white border-error-500 text-gray-900;
+}
+
+.Toastify__toast--info {
+  @apply bg-white border-info-500 text-gray-900;
+}
+
+.Toastify__toast--warning {
+  @apply bg-white border-warning-500 text-gray-900;
+}
+
+.Toastify__progress-bar {
+  @apply bg-primary-500;
+}
+
+.Toastify__close-button {
+  @apply text-gray-500 hover:text-gray-700;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Course color classes */
+.course-blue { @apply bg-blue-500 text-white; }
+.course-green { @apply bg-green-500 text-white; }
+.course-purple { @apply bg-purple-500 text-white; }
+.course-orange { @apply bg-orange-500 text-white; }
+.course-pink { @apply bg-pink-500 text-white; }
+.course-teal { @apply bg-teal-500 text-white; }
+.course-red { @apply bg-red-500 text-white; }
+.course-indigo { @apply bg-indigo-500 text-white; }
+.course-yellow { @apply bg-yellow-500 text-white; }
+.course-cyan { @apply bg-cyan-500 text-white; }
+
+.course-blue-light { @apply bg-blue-50 text-blue-700 border border-blue-200; }
+.course-green-light { @apply bg-green-50 text-green-700 border border-green-200; }
+.course-purple-light { @apply bg-purple-50 text-purple-700 border border-purple-200; }
+.course-orange-light { @apply bg-orange-50 text-orange-700 border border-orange-200; }
+.course-pink-light { @apply bg-pink-50 text-pink-700 border border-pink-200; }
+.course-teal-light { @apply bg-teal-50 text-teal-700 border border-teal-200; }
+.course-red-light { @apply bg-red-50 text-red-700 border border-red-200; }
+.course-indigo-light { @apply bg-indigo-50 text-indigo-700 border border-indigo-200; }
+.course-yellow-light { @apply bg-yellow-50 text-yellow-700 border border-yellow-200; }
+.course-cyan-light { @apply bg-cyan-50 text-cyan-700 border border-cyan-200; }

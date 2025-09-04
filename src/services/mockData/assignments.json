@@ -1,0 +1,134 @@
+[
+  {
+    "Id": 1,
+    "courseId": 1,
+    "title": "Programming Assignment 1",
+    "description": "Implement basic sorting algorithms in Python",
+    "dueDate": "2024-01-15T23:59:00",
+    "priority": "high",
+    "completed": false,
+    "grade": null,
+    "category": "programming"
+  },
+  {
+    "Id": 2,
+    "courseId": 1,
+    "title": "Midterm Exam",
+    "description": "Comprehensive exam covering chapters 1-8",
+    "dueDate": "2024-01-20T14:00:00",
+    "priority": "high",
+    "completed": false,
+    "grade": null,
+    "category": "exam"
+  },
+  {
+    "Id": 3,
+    "courseId": 2,
+    "title": "Calculus Problem Set 3",
+    "description": "Integration problems from chapter 5",
+    "dueDate": "2024-01-18T23:59:00",
+    "priority": "medium",
+    "completed": true,
+    "grade": 92,
+    "category": "homework"
+  },
+  {
+    "Id": 4,
+    "courseId": 2,
+    "title": "Quiz 2",
+    "description": "Derivatives and applications",
+    "dueDate": "2024-01-12T11:00:00",
+    "priority": "medium",
+    "completed": true,
+    "grade": 88,
+    "category": "quiz"
+  },
+  {
+    "Id": 5,
+    "courseId": 3,
+    "title": "Research Paper Draft",
+    "description": "First draft of argumentative essay",
+    "dueDate": "2024-01-22T23:59:00",
+    "priority": "high",
+    "completed": false,
+    "grade": null,
+    "category": "essay"
+  },
+  {
+    "Id": 6,
+    "courseId": 3,
+    "title": "Grammar Quiz",
+    "description": "Chapter 3 grammar concepts",
+    "dueDate": "2024-01-14T14:00:00",
+    "priority": "low",
+    "completed": true,
+    "grade": 95,
+    "category": "quiz"
+  },
+  {
+    "Id": 7,
+    "courseId": 4,
+    "title": "Case Study Analysis",
+    "description": "Analyze psychological case study from textbook",
+    "dueDate": "2024-01-25T23:59:00",
+    "priority": "medium",
+    "completed": false,
+    "grade": null,
+    "category": "analysis"
+  },
+  {
+    "Id": 8,
+    "courseId": 4,
+    "title": "Chapter 4 Discussion Post",
+    "description": "Discuss learning theories with peers",
+    "dueDate": "2024-01-16T23:59:00",
+    "priority": "low",
+    "completed": false,
+    "grade": null,
+    "category": "discussion"
+  },
+  {
+    "Id": 9,
+    "courseId": 5,
+    "title": "Lab Report 2",
+    "description": "Projectile motion experiment analysis",
+    "dueDate": "2024-01-19T17:00:00",
+    "priority": "high",
+    "completed": false,
+    "grade": null,
+    "category": "lab"
+  },
+  {
+    "Id": 10,
+    "courseId": 5,
+    "title": "Physics Problem Set 4",
+    "description": "Kinematics and dynamics problems",
+    "dueDate": "2024-01-17T23:59:00",
+    "priority": "medium",
+    "completed": true,
+    "grade": 87,
+    "category": "homework"
+  },
+  {
+    "Id": 11,
+    "courseId": 6,
+    "title": "Binary Tree Implementation",
+    "description": "Implement binary search tree with all operations",
+    "dueDate": "2024-01-21T23:59:00",
+    "priority": "high",
+    "completed": false,
+    "grade": null,
+    "category": "programming"
+  },
+  {
+    "Id": 12,
+    "courseId": 6,
+    "title": "Algorithm Analysis Paper",
+    "description": "Compare time complexity of sorting algorithms",
+    "dueDate": "2024-01-28T23:59:00",
+    "priority": "medium",
+    "completed": false,
+    "grade": null,
+    "category": "research"
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "Id": 1,
+    "courseId": 1,
+    "category": "Assignments",
+    "weight": 40,
+    "scores": [92, 88, 94, 87],
+    "average": 90.25
+  },
+  {
+    "Id": 2,
+    "courseId": 1,
+    "category": "Exams",
+    "weight": 45,
+    "scores": [89, 91],
+    "average": 90
+  },
+  {
+    "Id": 3,
+    "courseId": 1,
+    "category": "Participation",
+    "weight": 15,
+    "scores": [100, 95, 100, 98, 92],
+    "average": 97
+  },
+  {
+    "Id": 4,
+    "courseId": 2,
+    "category": "Homework",
+    "weight": 25,
+    "scores": [92, 88, 95, 87, 91],
+    "average": 90.6
+  },
+  {
+    "Id": 5,
+    "courseId": 2,
+    "category": "Quizzes",
+    "weight": 25,
+    "scores": [88, 92, 85, 90],
+    "average": 88.75
+  },
+  {
+    "Id": 6,
+    "courseId": 2,
+    "category": "Exams",
+    "weight": 50,
+    "scores": [87, 89],
+    "average": 88
+  },
+  {
+    "Id": 7,
+    "courseId": 3,
+    "category": "Essays",
+    "weight": 50,
+    "scores": [91, 88],
+    "average": 89.5
+  },
+  {
+    "Id": 8,
+    "courseId": 3,
+    "category": "Quizzes",
+    "weight": 25,
+    "scores": [95, 92, 88],
+    "average": 91.67
+  },
+  {
+    "Id": 9,
+    "courseId": 3,
+    "category": "Participation",
+    "weight": 25,
+    "scores": [100, 98, 95, 100],
+    "average": 98.25
+  },
+  {
+    "Id": 10,
+    "courseId": 4,
+    "category": "Exams",
+    "weight": 60,
+    "scores": [86, 89],
+    "average": 87.5
+  },
+  {
+    "Id": 11,
+    "courseId": 4,
+    "category": "Papers",
+    "weight": 30,
+    "scores": [92, 88],
+    "average": 90
+  },
+  {
+    "Id": 12,
+    "courseId": 4,
+    "category": "Discussion",
+    "weight": 10,
+    "scores": [95, 98, 92, 100],
+    "average": 96.25
+  },
+  {
+    "Id": 13,
+    "courseId": 5,
+    "category": "Lab Reports",
+    "weight": 35,
+    "scores": [89, 92, 87],
+    "average": 89.33
+  },
+  {
+    "Id": 14,
+    "courseId": 5,
+    "category": "Problem Sets",
+    "weight": 25,
+    "scores": [87, 90, 85, 88],
+    "average": 87.5
+  },
+  {
+    "Id": 15,
+    "courseId": 5,
+    "category": "Exams",
+    "weight": 40,
+    "scores": [84, 87],
+    "average": 85.5
+  },
+  {
+    "Id": 16,
+    "courseId": 6,
+    "category": "Programming Projects",
+    "weight": 50,
+    "scores": [94, 91],
+    "average": 92.5
+  },
+  {
+    "Id": 17,
+    "courseId": 6,
+    "category": "Exams",
+    "weight": 40,
+    "scores": [88],
+    "average": 88
+  },
+  {
+    "Id": 18,
+    "courseId": 6,
+    "category": "Quizzes",
+    "weight": 10,
+    "scores": [92, 95, 90],
+    "average": 92.33
+  }
+]

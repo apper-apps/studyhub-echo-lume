@@ -1,0 +1,144 @@
+[
+  {
+    "Id": 1,
+    "name": "Introduction to Computer Science",
+    "code": "CS 101",
+    "instructor": "Dr. Sarah Johnson",
+    "schedule": [
+      {
+        "dayOfWeek": "monday",
+        "startTime": "09:00",
+        "endTime": "10:30"
+      },
+      {
+        "dayOfWeek": "wednesday",
+        "startTime": "09:00",
+        "endTime": "10:30"
+      },
+      {
+        "dayOfWeek": "friday",
+        "startTime": "09:00",
+        "endTime": "10:30"
+      }
+    ],
+    "room": "Tech Building 205",
+    "color": "#3B82F6",
+    "semester": "Fall 2024",
+    "credits": 3
+  },
+  {
+    "Id": 2,
+    "name": "Calculus I",
+    "code": "MATH 151",
+    "instructor": "Prof. Michael Chen",
+    "schedule": [
+      {
+        "dayOfWeek": "tuesday",
+        "startTime": "11:00",
+        "endTime": "12:30"
+      },
+      {
+        "dayOfWeek": "thursday",
+        "startTime": "11:00",
+        "endTime": "12:30"
+      }
+    ],
+    "room": "Mathematics Hall 103",
+    "color": "#10B981",
+    "semester": "Fall 2024",
+    "credits": 4
+  },
+  {
+    "Id": 3,
+    "name": "English Composition",
+    "code": "ENG 101",
+    "instructor": "Dr. Amanda Williams",
+    "schedule": [
+      {
+        "dayOfWeek": "monday",
+        "startTime": "14:00",
+        "endTime": "15:30"
+      },
+      {
+        "dayOfWeek": "wednesday",
+        "startTime": "14:00",
+        "endTime": "15:30"
+      }
+    ],
+    "room": "Liberal Arts 217",
+    "color": "#7C3AED",
+    "semester": "Fall 2024",
+    "credits": 3
+  },
+  {
+    "Id": 4,
+    "name": "General Psychology",
+    "code": "PSY 101",
+    "instructor": "Dr. Robert Taylor",
+    "schedule": [
+      {
+        "dayOfWeek": "tuesday",
+        "startTime": "13:00",
+        "endTime": "14:30"
+      },
+      {
+        "dayOfWeek": "thursday",
+        "startTime": "13:00",
+        "endTime": "14:30"
+      }
+    ],
+    "room": "Social Sciences 301",
+    "color": "#F59E0B",
+    "semester": "Fall 2024",
+    "credits": 3
+  },
+  {
+    "Id": 5,
+    "name": "Physics I",
+    "code": "PHYS 201",
+    "instructor": "Prof. Lisa Martinez",
+    "schedule": [
+      {
+        "dayOfWeek": "monday",
+        "startTime": "10:00",
+        "endTime": "11:30"
+      },
+      {
+        "dayOfWeek": "wednesday",
+        "startTime": "10:00",
+        "endTime": "11:30"
+      },
+      {
+        "dayOfWeek": "friday",
+        "startTime": "10:00",
+        "endTime": "11:30"
+      }
+    ],
+    "room": "Science Building 150",
+    "color": "#EF4444",
+    "semester": "Fall 2024",
+    "credits": 4
+  },
+  {
+    "Id": 6,
+    "name": "Data Structures",
+    "code": "CS 201",
+    "instructor": "Dr. Kevin Zhang",
+    "schedule": [
+      {
+        "dayOfWeek": "tuesday",
+        "startTime": "15:00",
+        "endTime": "16:30"
+      },
+      {
+        "dayOfWeek": "thursday",
+        "startTime": "15:00",
+        "endTime": "16:30"
+      }
+    ],
+    "room": "Tech Building 310",
+    "color": "#06B6D4",
+    "semester": "Fall 2024",
+    "credits": 3
+  }
+]

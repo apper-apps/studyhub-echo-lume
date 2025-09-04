@@ -1,0 +1,156 @@
+[
+  {
+    "Id": 1,
+    "courseId": 1,
+    "courseName": "Introduction to Computer Science",
+    "dayOfWeek": "monday",
+    "startTime": "09:00",
+    "endTime": "10:30",
+    "type": "lecture",
+    "room": "Tech Building 205",
+    "color": "#3B82F6"
+  },
+  {
+    "Id": 2,
+    "courseId": 1,
+    "courseName": "Introduction to Computer Science",
+    "dayOfWeek": "wednesday",
+    "startTime": "09:00",
+    "endTime": "10:30",
+    "type": "lecture",
+    "room": "Tech Building 205",
+    "color": "#3B82F6"
+  },
+  {
+    "Id": 3,
+    "courseId": 1,
+    "courseName": "Introduction to Computer Science",
+    "dayOfWeek": "friday",
+    "startTime": "09:00",
+    "endTime": "10:30",
+    "type": "lecture",
+    "room": "Tech Building 205",
+    "color": "#3B82F6"
+  },
+  {
+    "Id": 4,
+    "courseId": 2,
+    "courseName": "Calculus I",
+    "dayOfWeek": "tuesday",
+    "startTime": "11:00",
+    "endTime": "12:30",
+    "type": "lecture",
+    "room": "Mathematics Hall 103",
+    "color": "#10B981"
+  },
+  {
+    "Id": 5,
+    "courseId": 2,
+    "courseName": "Calculus I",
+    "dayOfWeek": "thursday",
+    "startTime": "11:00",
+    "endTime": "12:30",
+    "type": "lecture",
+    "room": "Mathematics Hall 103",
+    "color": "#10B981"
+  },
+  {
+    "Id": 6,
+    "courseId": 3,
+    "courseName": "English Composition",
+    "dayOfWeek": "monday",
+    "startTime": "14:00",
+    "endTime": "15:30",
+    "type": "seminar",
+    "room": "Liberal Arts 217",
+    "color": "#7C3AED"
+  },
+  {
+    "Id": 7,
+    "courseId": 3,
+    "courseName": "English Composition",
+    "dayOfWeek": "wednesday",
+    "startTime": "14:00",
+    "endTime": "15:30",
+    "type": "seminar",
+    "room": "Liberal Arts 217",
+    "color": "#7C3AED"
+  },
+  {
+    "Id": 8,
+    "courseId": 4,
+    "courseName": "General Psychology",
+    "dayOfWeek": "tuesday",
+    "startTime": "13:00",
+    "endTime": "14:30",
+    "type": "lecture",
+    "room": "Social Sciences 301",
+    "color": "#F59E0B"
+  },
+  {
+    "Id": 9,
+    "courseId": 4,
+    "courseName": "General Psychology",
+    "dayOfWeek": "thursday",
+    "startTime": "13:00",
+    "endTime": "14:30",
+    "type": "lecture",
+    "room": "Social Sciences 301",
+    "color": "#F59E0B"
+  },
+  {
+    "Id": 10,
+    "courseId": 5,
+    "courseName": "Physics I",
+    "dayOfWeek": "monday",
+    "startTime": "10:00",
+    "endTime": "11:30",
+    "type": "lecture",
+    "room": "Science Building 150",
+    "color": "#EF4444"
+  },
+  {
+    "Id": 11,
+    "courseId": 5,
+    "courseName": "Physics I",
+    "dayOfWeek": "wednesday",
+    "startTime": "10:00",
+    "endTime": "11:30",
+    "type": "lecture",
+    "room": "Science Building 150",
+    "color": "#EF4444"
+  },
+  {
+    "Id": 12,
+    "courseId": 5,
+    "courseName": "Physics I",
+    "dayOfWeek": "friday",
+    "startTime": "10:00",
+    "endTime": "11:30",
+    "type": "lab",
+    "room": "Science Building 150",
+    "color": "#EF4444"
+  },
+  {
+    "Id": 13,
+    "courseId": 6,
+    "courseName": "Data Structures",
+    "dayOfWeek": "tuesday",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "type": "lecture",
+    "room": "Tech Building 310",
+    "color": "#06B6D4"
+  },
+  {
+    "Id": 14,
+    "courseId": 6,
+    "courseName": "Data Structures",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "type": "lecture",
+    "room": "Tech Building 310",
+    "color": "#06B6D4"
+  }
+]
