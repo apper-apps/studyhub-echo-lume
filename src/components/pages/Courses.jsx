@@ -151,7 +151,7 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
               </div>
               <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg border border-green-100">
                 <p className="text-2xl font-bold text-green-600">
-                  {filteredCourses.reduce((sum, course) => sum + course.credits, 0)}
+{filteredCourses.reduce((sum, course) => sum + (course.credits_c || 0), 0)}
                 </p>
                 <p className="text-sm text-gray-600">Total Credits</p>
               </div>
