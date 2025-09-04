@@ -150,7 +150,7 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
 
         {/* Stats */}
         {filteredCourses.length > 0 && (
-          <motion.div
+<motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -173,7 +173,6 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
                 <p className="text-sm text-gray-600">Semesters</p>
               </div>
             </div>
-</div>
           </motion.div>
         )}
       </div>
@@ -182,6 +181,9 @@ const uniqueSemesters = [...new Set(courses.map(course => course.semester_c || c
         isOpen={isCourseModalOpen}
         onClose={() => setIsCourseModalOpen(false)}
         onCourseCreated={loadCourses}
-      />
+/>
     </div>
   );
+};
+
+export default Courses;
